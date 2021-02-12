@@ -10,14 +10,14 @@ export const generateJWT = (user) => {
         lastName: user.lastName,
         email: user.email
     };
-    const token = jwt.sign(userObj, process.env.SECRET_KEY, {algorithm: "ES384", expiresIn: "1h"});
+    const token = jwt.sign(userObj, process.env.SECRET_KEY, {algorithm: "HS256", expiresIn: "1h"});
     return token;
 }
 
 //Validar el token 
 export const validateJWT = (req, res, next) => {
     const headerToken = req.headers['authorization'];
-    const token = headerToken.split("")[1];
+    const token = headerToken.split(" ")[1];
     if(token){
         try {
             const verify = jwt.verify(token, process.env.SECRET_KEY);
@@ -25,5 +25,7 @@ export const validateJWT = (req, res, next) => {
         } catch (error) {
             res.json({message: "la validacion no es correcta"})
         } 
-    }    
+    }else {
+        res.json({message: "La validación es incorrecta"});
+    }
 }

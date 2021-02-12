@@ -10,7 +10,7 @@ export const allUsers = async (req, res) =>{
 }
 export const idUser = async (req, res) => {
     try {
-        const results = await Users.findOne({where: {id: req.body.id}});
+        const results = await Users.findOne({where: {id: req.params.id}});
         res.json(results);
     } catch (error) {
         console.log(error);
