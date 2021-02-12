@@ -23,9 +23,9 @@ export const validateJWT = (req, res, next) => {
             const verify = jwt.verify(token, process.env.SECRET_KEY);
             next();
         } catch (error) {
-            res.json({message: "la validacion no es correcta"})
+            res.status(401).json({message: "la validacion no es correcta"})
         } 
     }else {
-        res.json({message: "La validación es incorrecta"});
+        res.status(401).json({message: "La validación es incorrecta"});
     }
 }
