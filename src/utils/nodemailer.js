@@ -21,7 +21,7 @@ const smtpTransport = nodemailer.createTransport({
         type: "OAuth2",
         user: "egmez124@gmail.com",
         clientId: googleClientId,
-        clienteSecret: googleSecret,
+        clientSecret: googleSecret,
         refreshToken: googleRefreshToken,
         accessToken: accessToken
     },
@@ -39,6 +39,7 @@ const mailOptions = {
 }
 
 const sendEmail = () => {
+    console.log(googleClientId, googleSecret);
     smtpTransport.sendMail(mailOptions, (error, info) => {
         if(error){
             console.log(error);

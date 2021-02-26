@@ -1,6 +1,6 @@
-import {sendEmail} from "../utils/nodemailer";
+import sendEmail from "../utils/nodemailer";
 
-export const allUsers = async (req, res) =>{
+export const Email = async (req, res) =>{
     try {
         sendEmail();
         res.json({
